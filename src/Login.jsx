@@ -6,7 +6,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from "react-router-dom";
 import Alert from '@mui/material/Alert';
-import { LOGIN } from "./utils";
+// import { LOGIN } from "./utils";
+
+const LOGIN = "myloginapiendpoint"; 
 
 const Login = () => {
   const [username, setUsername] = useState("");

@@ -1,15 +1,18 @@
-import './App.css'
+import './App.css';
 import Login from './Login';
+import View from './View';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
-
   return (
-    <>
-      <div>
-       <Login />
-      </div>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<View />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
