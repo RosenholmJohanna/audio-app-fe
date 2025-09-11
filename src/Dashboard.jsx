@@ -60,7 +60,7 @@ const data = {
 const Dashboard = () => {
   const currentDb = 60;
   return (
-    <Box sx={{ display: 'flex' }}>
+  <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, minHeight: '85vh', backgroundColor: '#0c1018', pt: 8 }}>
    
       {/* drawer + sidenav */}
       <Drawer
@@ -68,6 +68,7 @@ const Dashboard = () => {
         sx={{
           width: 220,
           flexShrink: 0,
+          display: { xs: 'none', md: 'block' },
           '& .MuiDrawer-paper': {
             width: 220,
             boxSizing: 'border-box',
@@ -76,9 +77,8 @@ const Dashboard = () => {
             borderRight: '1px solid #2c3140',
           },
         }}
-       // PaperProps={{ elevation: 6 }}
       >
-        <Divider sx={{ bgcolor: '#424755'}} />
+        <Divider />
         <List sx={{ mt: 7 }}>
           <ListItem button selected>
             <ListItemIcon sx={{ color: '#4e2a45' }}><BarChartIcon /></ListItemIcon>
@@ -101,26 +101,34 @@ const Dashboard = () => {
 
       {/* main content */}
   <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', p: 0, m: 0 }}>
-        <Box sx={{ display: 'flex', gap: 3, mb: 6, backgroundColor: '#162b2c42', p:2, borderRadius:2 }}>
+        <Box sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          gap: 3,
+          mb: 5,
+          backgroundColor: '#0d323441',
+          p: { xs: 2, sm: 3 },
+          borderRadius: 2
+        }}>
 
          {/* box 1-4 */}
-          <Paper sx={{ flex: 1, p: 3, borderRadius: 3, background: 'linear-gradient(135deg, #7702757f 10%, #054249 90%)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 120 }}>
+          <Paper sx={{ flex: 1, p: { xs: 2, sm: 3 }, borderRadius: 3, background: 'linear-gradient(135deg, #7702757f 10%, #054249 90%)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 110, minWidth: 0 }}>
             <Typography variant="subtitle2" color="#fff" fontWeight={500} mb={1}>Current dB</Typography>
             <Typography variant="h3" color="#fff" fontWeight={700}>{currentDb}</Typography>
           </Paper>
 
           
-          <Paper sx={{ flex: 1, p: 3, borderRadius: 3, backgroundColor: '#151b22', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 120 }}>
+          <Paper sx={{ flex: 1, p: { xs: 2, sm: 3 }, borderRadius: 3, backgroundColor: '#151b22', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 110, minWidth: 0 }}>
             <Typography variant="subtitle2" color="#b2bec3" fontWeight={500} mb={1}>Box 2</Typography>
             <Typography variant="h5" color="#fff" fontWeight={700}>-</Typography>
           </Paper>
 
-          <Paper sx={{ flex: 1, p: 3, borderRadius: 3, backgroundColor: '#151b22', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 120 }}>
+          <Paper sx={{ flex: 1, p: { xs: 2, sm: 3 }, borderRadius: 3, backgroundColor: '#151b22', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 110, minWidth: 0 }}>
             <Typography variant="subtitle2" color="#b2bec3" fontWeight={500} mb={1}>Box 3</Typography>
             <Typography variant="h5" color="#fff" fontWeight={500}>-</Typography>
           </Paper>
 
-          <Paper sx={{ flex: 1, p: 3, borderRadius: 3, backgroundColor: '#151b22', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 120 }}>
+          <Paper sx={{ flex: 1, p: { xs: 2, sm: 3 }, borderRadius: 3, backgroundColor: '#151b22', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 110, minWidth: 0 }}>
             <Typography variant="subtitle2" color="#b2bec3" fontWeight={500} mb={1}>Box 4</Typography>
             <Typography variant="h5" color="#fff" fontWeight={500}>-</Typography>
           </Paper>
@@ -128,20 +136,52 @@ const Dashboard = () => {
 
 
         {/* Chart full width */}
-        <Box sx={{ backgroundColor: '#2c162c77', p: 3, borderRadius: 2, minHeight: 400, display: 'flex', justifyItems: 'center', justifyContent: 'space-between', alignItems: 'center', gap: 3 }}>
-          <Paper elevation={4} sx={{ borderRadius: 3, backgroundColor: '#151b22', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 350, p: 4, width: '70%' }}>
-            <Typography variant="h5" fontWeight={500} color="#fafafa" mb={5} align="center">
+        <Box sx={{
+          backgroundColor: '#2c162c77',
+          p: { xs: 1.5, sm: 3 },
+          borderRadius: 2,
+          minHeight: 400,
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          justifyItems: 'center',
+          justifyContent: 'space-between',
+          alignItems: 'stretch',
+          gap: 3
+        }}>
+          <Paper elevation={4} sx={{
+            borderRadius: 3,
+            backgroundColor: '#151b22',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: 250,
+            p: { xs: 0, sm: 4 },
+             width: { xs: '100%', md: '100%' },
+            mb: { xs: 2, md: 0 }
+          }}>
+            <Typography variant="h5" fontWeight={500} color="#fafafa" mb={3} align="center">
               Audio Analytics
             </Typography>
-            <Box sx={{  minWidth: 500, maxWidth: 1200, height: 260 }}>
+            <Box sx={{ minWidth: { xs: 0, sm: 300, md: 500 }, maxWidth: 1200, height: { xs: 180, sm: 220, md: 260 }, width: '100%' }}>
               <Line data={data} options={options} />
             </Box>
           </Paper>
 
-           <Paper elevation={4} sx={{  borderRadius: 3, backgroundColor:'#151b22',  display: 'flex', flexDirection: 'column', alignItems: 'left', justifyContent: 'center', minHeight: 350, width: '35%', p:4 }}>
+          <Paper elevation={4} sx={{
+            borderRadius: 3,
+            backgroundColor: '#151b22',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'left',
+            justifyContent: 'center',
+            minHeight: 150,
+             width: {  md: '35%' },
+            p: { xs: 0, sm: 4 }
+          }}>
             <Typography variant="h5" fontWeight={500} color="#ffffff" mb={2} align="center">
               Calendar
-            </Typography> 
+            </Typography>
           </Paper>
         </Box>
       </Box>

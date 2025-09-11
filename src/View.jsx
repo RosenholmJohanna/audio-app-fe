@@ -4,9 +4,9 @@ import Dashboard from "./Dashboard";
 import Box from '@mui/material/Box';
 
 const View = () => (
-  <Box sx={{ width: '90vw'}}>
+  <Box >
     <TopBar />
-    <Box sx={{ }}>
+    <Box sx={{ width: '90vw' }}>
       <Dashboard />
     </Box>
   </Box>
